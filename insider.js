@@ -512,7 +512,6 @@ self.setEvents = () => {
         this.scrollLeft = scrollLeft - walk;
     });
 
-    // Scroll butonları
     $(previousButton).on("click", () => {
         $scrollContainer[0].scrollBy({ left: -scrollAmount, behavior: "smooth" });
     });
@@ -521,7 +520,6 @@ self.setEvents = () => {
         $scrollContainer[0].scrollBy({ left: scrollAmount, behavior: "smooth" });
     });
 
-    // Info modal
     $(document).on("click", infoButton, () => {
         $(".infoModal").show();
     });
@@ -530,9 +528,8 @@ self.setEvents = () => {
         $(".infoModal").hide();
     });
 
-    // Favorilere ekle/çıkar
     $scrollContainer.on("click", favIcon, function (e) {
-        e.stopPropagation(); // ürün click olayını engelle
+        e.stopPropagation(); 
         const id = Number($(this).data("id"));
         const isFav = favorites.includes(id);
 
@@ -549,15 +546,13 @@ self.setEvents = () => {
         }
     });
 
-    // Sepete ekle butonu
-    $(document).on("click", addCart, function (e) {
+    $(document).on("click", addCart, (e) => {
         e.stopPropagation();
         alert("Ürün sepetinize başarıyla eklendi.");
         console.log("ürün sepete eklendi");
     });
 };
 
- //Business Logics ve Fonksiyonlar
   self.fetchProducts = async () => {
     try {
       const localData =  self.getFromLocal();
@@ -618,7 +613,6 @@ self.setEvents = () => {
     favorites = favorites.filter((favId) => favId !== Number(id));
     localStorage.setItem(config.localStorage.favoriteKey, JSON.stringify(favorites));
   };
-
 
 self.init()
 
